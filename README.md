@@ -32,7 +32,7 @@ accepts these credentials and calls `done` providing a user, as well as
       }
     ));
 
-#### Authenticate Requests
+### Authenticate Requests
 
 Use `passport.authenticate('google-token')` to authenticate requests.
 
@@ -41,7 +41,45 @@ Use `passport.authenticate('google-token')` to authenticate requests.
       res.send(req.user);
     });
 
-GET request need to have `access_token` and optionally the `refresh_token` in either the query string or set as a header.  If a POST is being preformed they can also be included in the body of the request.
+### Client Requests
+
+Clients can send requests to routes that use passport-google-token authentication using query parms, body, or HTTP headers. Clients will need to transmit the `access_token`
+and optionally the `refresh_token` that are received from google after login.
+
+#### Sending access_token as a Query parameter
+
+```
+GET /auth/google/token?access_token=<TOKEN_HERE>
+```
+
+#### Sending access token as an HTTP header
+
+Clients can choose to send the access token using the Oauth2 Bearer token (RFC 6750) compliant format
+
+```
+GET /resource HTTP/1.1
+Host: server.example.com
+Authorization: Bearer base64_access_token_string
+```
+
+optionally a client can send via a custom (default access_token) header
+
+```
+GET /resource HTTP/1.1
+Host: server.example.com
+access_token: base64_access_token_string
+```
+
+#### Sending access token as an HTTP body
+
+Clients can transmit the access token via the body
+
+```
+POST /resource HTTP/1.1
+Host: server.example.com
+
+access_token=base64_access_token_string
+```
 
 ## Credits
 
