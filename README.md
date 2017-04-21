@@ -46,13 +46,13 @@ Use `passport.authenticate('google-token')` to authenticate requests.
 Clients can send requests to routes that use passport-google-token authentication using query parms, body, or HTTP headers. Clients will need to transmit the `access_token`
 and optionally the `refresh_token` that are received from google after login.
 
-#### Sending access_token as a Query parameter
+### Sending access_token as a Query parameter
 
 ```
 GET /auth/google/token?access_token=<TOKEN_HERE>
 ```
 
-#### Sending access token as an HTTP header
+### Sending access token as an HTTP header
 
 Clients can choose to send the access token using the Oauth2 Bearer token (RFC 6750) compliant format
 
@@ -70,7 +70,7 @@ Host: server.example.com
 access_token: base64_access_token_string
 ```
 
-#### Sending access token as an HTTP body
+### Sending access token as an HTTP body
 
 Clients can transmit the access token via the body
 
